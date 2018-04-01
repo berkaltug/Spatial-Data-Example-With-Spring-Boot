@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body{
+	background-image:url("https://background-tiles.com/overview/green/patterns/small/1009.png");
+	bakcground-repeat:repeat;
+}
+.jumbotron , .panel>.panel-default{
+	background-color:rgba(38, 38, 38,0.85);
+	 color:white;
+}
