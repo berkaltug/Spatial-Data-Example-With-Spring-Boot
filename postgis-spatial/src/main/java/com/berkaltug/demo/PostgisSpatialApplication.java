@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.berkaltug.demo.Domain.Ilce;
 import com.berkaltug.demo.Service.CityService;
 import com.berkaltug.demo.Service.IlceService;
+import com.berkaltug.demo.Service.SchoolService;
 import com.berkaltug.demo.repository.CityRepo;
 import com.berkaltug.demo.repository.IlceRepo;
 import com.vividsolutions.jts.geom.Coordinate;
@@ -25,6 +26,8 @@ public class PostgisSpatialApplication implements CommandLineRunner{
 	private CityService cr;
 	@Autowired
 	private IlceService ir;
+	@Autowired 
+	private SchoolService scs;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PostgisSpatialApplication.class, args);
@@ -44,7 +47,10 @@ public class PostgisSpatialApplication implements CommandLineRunner{
 		
 //		System.out.println(cr.getOne(1).parseCoordinate(cr.getOne(1).getKonum()));
 		
-//		System.out.println(cr.getCityById(1).parseIlce(this.cr.getCityById(1).getIlceler()));
+		System.out.println(cr.getCityById(1).parseIlce(this.cr.getCityById(1).getIlceler()));
+		System.out.println(scs.getSchoolById(2).parseCoordinate(this.scs.getSchoolById(2).getKonum()));
+		System.out.println(scs.getSchoolById(2).getSecmenler().size());
+		System.out.println(ir.getIlceById(2).parseSchool(this.ir.getIlceById(2).getOkullar()));
 		
 //		ir.getIlceById(1).getSecmenler().forEach(secmen->System.out.println(secmen.getName()));
 		

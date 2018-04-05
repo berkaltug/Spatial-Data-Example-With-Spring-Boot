@@ -21,6 +21,8 @@ import com.vividsolutions.jts.geom.Polygon;
 @Entity
 @Table(name="ilce")
 public class Ilce {
+	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
@@ -32,7 +34,7 @@ public class Ilce {
 	private City il_id;
 	
 	@OneToMany(mappedBy="ilce_id")
-	private List<Secmen> secmenler=new ArrayList<>();
+	private List<School> okullar=new ArrayList<>();
 	
 //	@Type(type="org.hibernate.spatial.GeometryType")  hibernate'in yeni sürümünde deprecate olmuş
 	private MultiPolygon konum;
@@ -69,13 +71,8 @@ public class Ilce {
 		this.il_id = il_id;
 	}
 
-	public List<Secmen> getSecmenler() {
-		return secmenler;
-	}
-
-	public void setSecmenler(List<Secmen> secmenler) {
-		this.secmenler = secmenler;
-	}
+	
+	
 
 	public Coordinate[] getKonum() {
 		
@@ -86,12 +83,16 @@ public class Ilce {
 		this.konum = konum;
 	}
 
-	@Override
-	public String toString() {
-		return "Ilce [id=" + id + ", name=" + name + ", il_id=" + il_id + ", secmenler=" + secmenler + ", konum="
-				+ konum.toString() + "]";
-	}
 	
+	
+	public List<School> getOkullar() {
+		return okullar;
+	}
+
+	public void setOkullar(List<School> okullar) {
+		this.okullar = okullar;
+	}
+
 	public String parseCoordinate(Coordinate[] koord) {
 		
 		StringBuffer sb=new StringBuffer();
@@ -107,6 +108,22 @@ public class Ilce {
 		
 		}
 
+	@Override
+	public String toString() {
+		return "Ilce [id=" + id + ", name=" + name + ", il_id=" + il_id + ", secmenler=" + okullar + ", konum="
+				+ konum + "]";
+	}
+	public String parseSchool(List<School> okullar) {
+		
+		StringBuffer sb=new StringBuffer();
+		sb.append("[");
+		okullar.forEach(okul->sb.append("`"+okul.getName()+"`,"));
+		sb.deleteCharAt(sb.length()-1);
+		sb.append("]");
+		
+		return sb.toString();
+	}
 	
+
 	
 }

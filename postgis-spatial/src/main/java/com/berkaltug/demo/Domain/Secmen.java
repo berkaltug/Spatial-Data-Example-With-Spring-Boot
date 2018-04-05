@@ -17,8 +17,8 @@ public class Secmen {
 	private String surname;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_ilce")
-	private Ilce ilce_id;
+	@JoinColumn(name="fk_school")
+	private School school_id;
 	
 	public Secmen() {
 	}
@@ -53,17 +53,19 @@ public class Secmen {
 		this.surname = surname;
 	}
 
-	public Ilce getIlce_id() {
-		return ilce_id;
-	}
 
-	public void setIlce_id(Ilce ilce_id) {
-		this.ilce_id = ilce_id;
-	}
 
 	@Override
 	public String toString() {
-		return "Secmen [id=" + id + ", name=" + name + ", surname=" + surname + ", ilce_id=" + ilce_id + "]";
+		return "Secmen [id=" + id + ", name=" + name + ", surname=" + surname + ", ilce_id=" + school_id + "]";
+	}
+
+	public School getSchool_id() {
+		return school_id;
+	}
+
+	public void setSchool_id(School school_id) {
+		this.school_id = school_id;
 	}
 	
 
